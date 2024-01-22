@@ -1,34 +1,28 @@
 import random
 
-def calculate_wage(attendance_status, daily_wage):
-    if attendance_status == 1:
-        return full_day_wage(daily_wage)
-    elif attendance_status == 2:
-        return part_time_wage(daily_wage)
-    else:
-        return 0
+def calculate_daily_wage(hours_worked, daily_wage):
+    return daily_wage * hours_worked
 
-def full_day_wage(daily_wage):
-    full_day_hours = 8
-    return daily_wage * full_day_hours
+def calculate_monthly_wage(daily_wage, hours_per_day, days_per_month):
+    return daily_wage * hours_per_day * days_per_month
 
-def part_time_wage(daily_wage):
-    part_time_hours = 4
-    return daily_wage * part_time_hours
+def present_case():
+    print("Employee is Present\nWage:", calculate_daily_wage(8, daily_wage))
+    print("Monthly Wage:", calculate_monthly_wage(daily_wage, 8, 20))
 
-def main():
-    attendance_status = random.randint(0, 2)
-    daily_wage = 20
+def part_time_case():
+    print("Part-time wage:", calculate_daily_wage(4, daily_wage))
+    print("Monthly Wage:", calculate_monthly_wage(daily_wage, 4, 20))
 
-    if attendance_status == 1:
-        print("Employee is Present")
-    elif attendance_status == 2:
-        print("Employee is Part-Time")
-    else:
-        print("Employee is Absent")
+def absent_case():
+    print("Employee is Absent")
 
-    wage = calculate_wage(attendance_status, daily_wage)
-    print("Wage:", wage)
+attendance_status = random.randint(0, 2)
+daily_wage = 20
 
-if __name__ == "__main__":
-    main()
+if attendance_status == 1:
+    present_case()
+elif attendance_status == 2:
+    part_time_case()
+else:
+    absent_case()
